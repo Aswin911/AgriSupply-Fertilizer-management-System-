@@ -12,6 +12,7 @@ app.use('/',home)
 
 db.sequelize.sync().then(() => {
     app.listen(3001,()=>{
+        console.log('\n\nConnected to Database!!!\n');
         console.log("Server running in port 3001");
         
     })
