@@ -1,0 +1,26 @@
+.farmer-dashboard {
+    padding: 20px;
+}
+
+.farmer-dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.farmer-dashboard nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.farmer-dashboard nav ul li {
+    margin-bottom: 10px;
+}
+
+.farmer-dashboard nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.farmer-dashboard nav ul li a:hover {
+    text-decoration: underline;
+}
