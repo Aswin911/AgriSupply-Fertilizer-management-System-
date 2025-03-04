@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';  
+import Manufacturer from './pages/Manufacturer';
+import Farmer from './pages/Farmer';
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin/*" element={<Admin />} /> {/* Add this */}
+            <Route path="/manufacturer/*" element={<Manufacturer />} /> {/* Add this */}
+            <Route path="/farmer/*" element={<Farmer />} /> {/* Add this */}
           </Routes>
         </main>
         <Footer />
