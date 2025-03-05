@@ -1,21 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    const Users = sequelize.define("Users", {
+  const Users = sequelize.define("Users", {
       username: {
-        type: DataTypes.STRING,
-        allowNull: false,
+          type: DataTypes.STRING,
+          allowNull: false,
       },
       password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+          type: DataTypes.STRING,
+          allowNull: false,
       },
-    });
-  
-    Users.associate = (models) => {
-      Users.hasMany(models.Likes, {
-        onDelete: "cascade",
-      });
-    };
-  
-    return Users;
-  };
-  
+  });
+
+  return Users; // Removed the `associate` function since there's no Likes table
+};
