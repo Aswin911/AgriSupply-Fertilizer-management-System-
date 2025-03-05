@@ -1,30 +1,3 @@
-.admin-panel {
-    padding: 20px;
-}
-
-.admin-panel h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.admin-panel nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.admin-panel nav ul li {
-    margin-bottom: 10px;
-}
-
-.admin-panel nav ul li a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-.admin-panel nav ul li a:hover {
-    text-decoration: underline;
-}
-
 .flex {
   display: flex;
 }
@@ -53,10 +26,6 @@
   position: fixed;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .ml-64 {
   margin-left: 16rem;
 }
@@ -69,16 +38,8 @@
   overflow: auto;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.bottom-6 {
-  bottom: 1.5rem;
-}
-
-.w-full {
-  width: 100%;
+.mt-auto {
+  margin-top: auto;
 }
 
 .bg-red-600 {

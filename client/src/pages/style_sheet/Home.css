@@ -32,3 +32,20 @@
     padding: 20px;
     text-align: center;
 }
+/* 
+
+.flex {
+    display: flex;
+  }
+  
+.flex-col {
+    flex-direction: column;
+  }
+  
+.min-h-screen {
+    min-height: 100vh;
+  }
+  
+.flex-grow {
+    flex-grow: 1;
+  } */

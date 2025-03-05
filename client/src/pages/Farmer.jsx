@@ -1,60 +1,74 @@
-import React from 'react';
-import './style_sheet/Farmer.css'
-import { Link, Route, Routes } from 'react-router-dom';
-import ViewFertilizers from './Farmer_asset/ViewFertilizers';
-import PlaceOrder from './Farmer_asset/PlaceOrder';
-import MakePayment from './Farmer_asset/MakePayment';
-import TrackOrder from './Farmer_asset/TrackOrder';
-import SubmitFeedback from './Farmer_asset/SubmitFeedback';
+import React, { useEffect } from "react";
+import { Link, Route, Routes, Navigate, useLocation, useNavigate } from "react-router-dom";
+import "./style_sheet/Admin.css";
+import MakePayment from "./Farmer_asset/MakePayment";
+import PlaceOrder from "./Farmer_asset/PlaceOrder";
+import TrackOrder from "./Farmer_asset/TrackOrder";
+import ViewFertilizers from "./Farmer_asset/ViewFertilizers";
+import SubmitFeedback from "./Farmer_asset/SubmitFeedback";
 
-function Farmer() {
+const Farmer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Current path:", location.pathname);
+  }, [location.pathname]);
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
+
   return (
-    <div>
-      <h1>Farmer Dashboard</h1>
-      <nav>
-        <ul>
-          <li><Link to="/farmer/view-fertilizers">View Fertilizers</Link></li>
-          <li><Link to="/farmer/place-order">Place Order</Link></li>
-          <li><Link to="/farmer/make-payment">Make Payment</Link></li>
-          <li><Link to="/farmer/track-order">Track Order</Link></li>
-          <li><Link to="/farmer/submit-feedback">Submit Feedback</Link></li>
-        </ul>
-      </nav>
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 text-white p-6 fixed h-screen left-0 top-0 flex flex-col">
+        <h1 className="text-xl font-bold mb-6">Farmer Panel</h1>
+        <nav className="flex-1">
+          <ul className="space-y-3">
+            <li>
+            <Link to="/farmer/make-payment" className={`block p-3 rounded ${location.pathname === "/farmer/make-payment" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+              Make Payment
+            </Link>
+            <Link to="/farmer/place-order" className={`block p-3 rounded ${location.pathname === "/farmer/place-order" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+              Place Order
+            </Link>
+            <Link to="/farmer/track-order" className={`block p-3 rounded ${location.pathname === "/farmer/track-order" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            Track Order
+            </Link>
+            <Link to="/farmer/view-fertilizers" className={`block p-3 rounded ${location.pathname === "/farmer/view-fertilizers" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            View Fertilizers
+            </Link>
+            <Link to="/farmer/submit-feedbck" className={`block p-3 rounded ${location.pathname === "/farmer/submit-feedbck" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            Submit Feedback
+            </Link>
+            
+
+            </li>
+          </ul>
+        </nav>
+        <button onClick={handleLogout} className="mt-auto bg-red-600 hover:bg-red-700 p-3 rounded w-full">
+          Logout
+        </button>
+      </aside>
+
+      {/* Main Content */}
+      <main className="ml-64 p-6 flex-1 overflow-auto">
       <Routes>
-        <Route path="view-fertilizers" element={<ViewFertilizers />} />
-        <Route path="place-order" element={<PlaceOrder />} />
+        <Route index element={<Navigate to="make-payment" replace />} />
         <Route path="make-payment" element={<MakePayment />} />
+        <Route path="place-order" element={<PlaceOrder />} />
         <Route path="track-order" element={<TrackOrder />} />
-        <Route path="submit-feedback" element={<SubmitFeedback />} />
+        <Route path="view-fertilizers" element={<ViewFertilizers />} />
+        <Route path="submit-feedbck" element={<SubmitFeedback />} />
       </Routes>
+      </main>
     </div>
   );
-}
+};
 
 export default Farmer;
 
 
 
 
-// FARMER DASHBOARD
-// │
-// ├── View Fertilizers
-// │     ├── Search & Filter
-// │     ├── View Details
-// │
-// ├── Place Order
-// │     ├── Select Fertilizer
-// │     ├── Enter Quantity
-// │     ├── Confirm Order
-// │
-// ├── Make Payment
-// │     ├── Choose Payment Mode
-// │     ├── Confirm Payment
-// │
-// ├── Track Order
-// │     ├── View Order Status
-// │     ├── Estimated Delivery Date
-// │
-// └── Submit Feedback
-//       ├── Rate Product
-//       ├── Write Review
