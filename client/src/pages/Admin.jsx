@@ -25,32 +25,38 @@ const Admin = () => {
         <nav className="flex-1">
           <ul className="space-y-3">
             <li>
-            <Link to="/admin/manage-users" className={`block p-3 rounded ${location.pathname === "/admin/manage-users" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
-              Manage Users
-            </Link>
-            <Link to="/admin/oversee-orders" className={`block p-3 rounded ${location.pathname === "/admin/oversee-orders" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
-              Oversee Orders & Payments
-            </Link>
-            <Link to="/admin/moderate-feedback" className={`block p-3 rounded ${location.pathname === "/admin/moderate-feedback" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
-              Moderate Feedback
-            </Link>
-
+              <Link to="/admin/manage-users" className={`block p-3 rounded ${location.pathname === "/admin/manage-users" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                Manage Users
+              </Link>
+              <Link to="/admin/oversee-orders" className={`block p-3 rounded ${location.pathname === "/admin/oversee-orders" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                Oversee Orders & Payments
+              </Link>
+              <Link to="/admin/moderate-feedback" className={`block p-3 rounded ${location.pathname === "/admin/moderate-feedback" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                Moderate Feedback
+              </Link>
             </li>
           </ul>
         </nav>
-        <button onClick={handleLogout} className="mt-auto bg-red-600 hover:bg-red-700 p-3 rounded w-full">
-          Logout
-        </button>
+
+        {/* Home and Logout Buttons */}
+        <div className="flex flex-col gap-3 mt-auto">
+          <Link to="/" className="text-center bg-gray-700 hover:bg-gray-600 p-3 rounded">
+            Home
+          </Link>
+          <button onClick={handleLogout} className="text-center bg-gray-700 hover:bg-gray-600 p-3 rounded">
+            Logout
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}
       <main className="ml-64 p-6 flex-1 overflow-auto">
-      <Routes>
-        <Route index element={<Navigate to="manage-users" replace />} />
-        <Route path="manage-users" element={<ManageUsers />} />
-        <Route path="oversee-orders" element={<Orders />} />
-        <Route path="moderate-feedback" element={<ModerateFeed />} />
-      </Routes>
+        <Routes>
+          <Route index element={<Navigate to="manage-users" replace />} />
+          <Route path="manage-users" element={<ManageUsers />} />
+          <Route path="oversee-orders" element={<Orders />} />
+          <Route path="moderate-feedback" element={<ModerateFeed />} />
+        </Routes>
       </main>
     </div>
   );
