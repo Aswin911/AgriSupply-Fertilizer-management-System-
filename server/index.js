@@ -7,8 +7,10 @@ app.use(cors())
 
 const db = require('./models')
 
-const home = require('./routes/Home.js')
-app.use('/',home)
+const farmersRoute = require('./routes/Farmers.js');
+
+app.use('/farmers', farmersRoute);
+
 
 db.sequelize.sync().then(() => {
     app.listen(3001,()=>{
