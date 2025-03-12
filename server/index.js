@@ -8,8 +8,11 @@ app.use(cors())
 const db = require('./models')
 
 const farmersRoute = require('./routes/Farmers.js');
+const fertilizersRoute = require('./routes/Fertilizers.js'); // Add this line
+
 
 app.use('/farmers', farmersRoute);
+app.use('/fertilizers', fertilizersRoute); // Add this line
 
 
 db.sequelize.sync().then(() => {

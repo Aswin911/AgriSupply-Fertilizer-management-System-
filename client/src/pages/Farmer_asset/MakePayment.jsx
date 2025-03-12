@@ -5,7 +5,7 @@ const MakePayment = () => {
   const [farmers, setFarmers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/farmers')
+    axios.get('http://localhost:3001/farmers')
       .then(response => {
         setFarmers(response.data);
       })

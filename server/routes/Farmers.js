@@ -12,6 +12,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get a single farmer by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const farmer = await Farmers.findByPk(req.params.id);
+    if (farmer) {
+      res.json(farmer);
+    } else {
+      res.status(404).json({ error: "Farmer not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch farmer" });
+  }
+});
+
 // Add a new farmer
 router.post("/", async (req, res) => {
   try {
@@ -19,6 +33,36 @@ router.post("/", async (req, res) => {
     res.json(newFarmer);
   } catch (error) {
     res.status(500).json({ error: "Failed to add farmer" });
+  }
+});
+
+// Update a farmer's details
+router.put("/:id", async (req, res) => {
+  try {
+    const farmer = await Farmers.findByPk(req.params.id);
+    if (farmer) {
+      await farmer.update(req.body);
+      res.json(farmer);
+    } else {
+      res.status(404).json({ error: "Farmer not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update farmer" });
+  }
+});
+
+// Delete a farmer
+router.delete("/:id", async (req, res) => {
+  try {
+    const farmer = await Farmers.findByPk(req.params.id);
+    if (farmer) {
+      await farmer.destroy();
+      res.json({ message: "Farmer deleted" });
+    } else {
+      res.status(404).json({ error: "Farmer not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete farmer" });
   }
 });
 
