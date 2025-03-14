@@ -10,10 +10,16 @@ const db = require('./models');
 const farmersRoute = require('./routes/Farmers.js');
 const fertilizersRoute = require('./routes/Fertilizers.js'); 
 const feedbackRoute = require('./routes/Feedback.js');
+const usersRoute = require('./routes/Users.js'); 
+const manufacturersRoute = require('./routes/Manufacturers.js'); 
+const ordersRoute = require('./routes/Orders.js');
 
 app.use('/farmers', farmersRoute);
 app.use('/fertilizers', fertilizersRoute);
 app.use('/feedback', feedbackRoute);
+app.use('/users', usersRoute);
+app.use('/manufacturers', manufacturersRoute);
+app.use('/orders', ordersRoute);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {

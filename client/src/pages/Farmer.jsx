@@ -1,7 +1,7 @@
+// filepath: d:\web dev\AgriSupply\client\src\pages\Farmer.jsx
 import React, { useEffect } from "react";
 import { Link, Route, Routes, Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./style_sheet/Admin.css";
-import MakePayment from "./Farmer_asset/MakePayment";
 import PlaceOrder from "./Farmer_asset/PlaceOrder";
 import TrackOrder from "./Farmer_asset/TrackOrder";
 import ViewFertilizers from "./Farmer_asset/ViewFertilizers";
@@ -27,9 +27,6 @@ const Farmer = () => {
         <nav className="flex-1">
           <ul className="space-y-3">
             <li>
-              <Link to="/farmer/make-payment" className={`block p-3 rounded ${location.pathname === "/farmer/make-payment" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
-                Make Payment
-              </Link>
               <Link to="/farmer/place-order" className={`block p-3 rounded ${location.pathname === "/farmer/place-order" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
                 Place Order
               </Link>
@@ -60,8 +57,7 @@ const Farmer = () => {
       {/* Main Content */}
       <main className="ml-64 p-6 flex-1 overflow-auto">
         <Routes>
-          <Route index element={<Navigate to="make-payment" replace />} />
-          <Route path="make-payment" element={<MakePayment />} />
+          <Route index element={<Navigate to="place-order" replace />} />
           <Route path="place-order" element={<PlaceOrder />} />
           <Route path="track-order" element={<TrackOrder />} />
           <Route path="view-fertilizers" element={<ViewFertilizers />} />
@@ -73,7 +69,3 @@ const Farmer = () => {
 };
 
 export default Farmer;
-
-
-
-

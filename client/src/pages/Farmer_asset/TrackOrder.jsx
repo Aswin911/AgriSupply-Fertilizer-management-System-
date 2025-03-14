@@ -8,7 +8,7 @@ const TrackOrder = () => {
       </h2>
       <div className="mt-4 flex items-center space-x-4">
         <p className="text-lg text-gray-600">View Order Status</p>
-        <button className="bg-blue-600 text-white px-8 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">
+        <button className="ml-auto bg-blue-600 text-white px-8 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">
           Track
         </button>
       </div>

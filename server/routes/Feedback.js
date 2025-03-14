@@ -22,4 +22,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// DELETE route to delete feedback by ID
+router.delete('/:id', async (req, res) => {
+  try {
+    const feedback = await Feedback.findByPk(req.params.id);
+    if (feedback) {
+      await feedback.destroy();
+      res.status(200).send({ message: 'Feedback deleted' });
+    } else {
+      res.status(404).send({ error: 'Feedback not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: 'Failed to delete feedback' });
+  }
+});
+
 module.exports = router;

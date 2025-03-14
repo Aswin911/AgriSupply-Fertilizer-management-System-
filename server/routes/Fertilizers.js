@@ -37,9 +37,13 @@ router.post("/", async (req, res) => {
       res.status(500).json({ error: "Failed to add fertilizer" });
     }
   });
+
+
 // Update a fertilizer's details
 router.put("/:id", async (req, res) => {
   try {
+    console.log(`Updating fertilizer with ID: ${req.params.id}`);
+    console.log('Request body:', req.body);
     const fertilizer = await Fertilizers.findByPk(req.params.id);
     if (fertilizer) {
       await fertilizer.update(req.body);
@@ -48,9 +52,11 @@ router.put("/:id", async (req, res) => {
       res.status(404).json({ error: "Fertilizer not found" });
     }
   } catch (error) {
+    console.error('Failed to update fertilizer:', error);
     res.status(500).json({ error: "Failed to update fertilizer" });
   }
 });
+
 
 // Delete a fertilizer
 router.delete("/:id", async (req, res) => {
