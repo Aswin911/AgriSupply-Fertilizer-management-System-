@@ -1,9 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../store/UserContext';
+import authServices from '../services/authService';
 
 function Login() {
     const [role, setRole] = useState('');
     const navigate = useNavigate();
+
+    const { setUserData } = useAuth()
+
+
+    const login = async (username, password) => {
+        try{
+            const userData = await authServices.login({username, password})
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    const forgot_password = async (username, password, security_question, answer) => {
+        try{
+            const userData = await authServices.forgot_password({username, password, security_question, answer})
+        } catch (error) {
+            alert(error)
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +53,7 @@ function Login() {
                     <option value="Farmer">Farmer</option>
                     <option value="Manufacturer">Manufacturer</option>
                 </select>
-                
+
                 <button
                     type="submit"
                     className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg focus:ring-2 focus:ring-blue-300"
@@ -43,7 +64,7 @@ function Login() {
                 {/* Home Button */}
                 <button
                     type="button"
-                    onClick={() => navigate('/')}
+                    onClick={() => { navigate('/') }}
                     className="mt-2 w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 rounded-lg focus:ring-2 focus:ring-gray-300"
                 >
                     Home
