@@ -20,18 +20,43 @@ const Admin = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white p-6 fixed h-screen left-0 top-0 flex flex-col">
-        <h1 className="text-xl font-bold mb-6">Admin Panel</h1>
+      <aside className="w-64 bg-white shadow-md p-6 fixed h-screen left-0 top-0 flex flex-col">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Admin Panel</h1>
         <nav className="flex-1">
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             <li>
-              <Link to="/admin/manage-users" className={`block p-3 rounded ${location.pathname === "/admin/manage-users" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+              <Link
+                to="/admin/manage-users"
+                className={`block p-3 rounded-lg text-gray-700 font-medium ${
+                  location.pathname === "/admin/manage-users"
+                    ? "bg-blue-100 text-blue-600"
+                    : "hover:bg-gray-100"
+                }`}
+              >
                 Manage Users
               </Link>
-              <Link to="/admin/oversee-orders" className={`block p-3 rounded ${location.pathname === "/admin/oversee-orders" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            </li>
+            <li>
+              <Link
+                to="/admin/oversee-orders"
+                className={`block p-3 rounded-lg text-gray-700 font-medium ${
+                  location.pathname === "/admin/oversee-orders"
+                    ? "bg-blue-100 text-blue-600"
+                    : "hover:bg-gray-100"
+                }`}
+              >
                 Oversee Orders & Payments
               </Link>
-              <Link to="/admin/moderate-feedback" className={`block p-3 rounded ${location.pathname === "/admin/moderate-feedback" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            </li>
+            <li>
+              <Link
+                to="/admin/moderate-feedback"
+                className={`block p-3 rounded-lg text-gray-700 font-medium ${
+                  location.pathname === "/admin/moderate-feedback"
+                    ? "bg-blue-100 text-blue-600"
+                    : "hover:bg-gray-100"
+                }`}
+              >
                 Moderate Feedback
               </Link>
             </li>
@@ -39,18 +64,24 @@ const Admin = () => {
         </nav>
 
         {/* Home and Logout Buttons */}
-        <div className="flex flex-col gap-3 mt-auto">
-          <Link to="/" className="text-center bg-gray-700 hover:bg-gray-600 p-3 rounded">
-            Home
-          </Link>
-          <button onClick={handleLogout} className="text-center bg-gray-700 hover:bg-gray-600 p-3 rounded">
-            Logout
-          </button>
-        </div>
-      </aside>
+                <div className="flex flex-col gap-3 mt-auto">
+                  <Link
+                    to="/"
+                    className="text-center bg-white-500 text-grey hover:bg-blue-100 p-3 rounded-lg font-medium"
+                  >
+                    Home
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="text-center bg-white-500 text-grey hover:bg-blue-100 p-3 rounded-lg font-medium"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </aside>
 
       {/* Main Content */}
-      <main className="ml-64 p-6 flex-1 overflow-auto">
+      <main className="ml-64 p-6 flex-1 overflow-auto bg-gray-50">
         <Routes>
           <Route index element={<Navigate to="manage-users" replace />} />
           <Route path="manage-users" element={<ManageUsers />} />
