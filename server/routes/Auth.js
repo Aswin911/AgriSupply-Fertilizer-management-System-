@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt')
 const { Users } = require("../models");
 const JWT_SECRET = 'secret'
 
@@ -57,7 +59,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/forgot_password', async (req, res) => {
     try {
-        const { username, security_question, answer, new_password } = req.body;
+        const { username, security_question, answer, password } = req.body;
 
         if (!username || !security_question || !answer) {
             console.log('Username and question are required');
@@ -89,3 +91,5 @@ router.post('/forgot_password', async (req, res) => {
         res.status(500).json({ error: "Unable to login", message: error.message });
     }
 })
+
+module.exports = router;

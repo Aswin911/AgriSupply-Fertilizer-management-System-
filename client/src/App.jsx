@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Manufacturer from './pages/Manufacturer';
 import Farmer from './pages/Farmer';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
@@ -21,9 +22,9 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin/*" element={<Admin />} />
-            <Route path="/manufacturer/*" element={<Manufacturer />} />
-            <Route path="/farmer/*" element={<Farmer />} />
+            <Route path="/admin/*" element={<ProtectedRoute users={['Admin']}> <Admin /></ProtectedRoute>} />
+            <Route path="/manufacturer/*" element={<ProtectedRoute users={['Manufacturer']}><Manufacturer /></ProtectedRoute>} />
+            <Route path="/farmer/*" element={<ProtectedRoute users={['Farmer']}><Farmer /></ProtectedRoute>} />
           </Routes>
         </main>
       </div>

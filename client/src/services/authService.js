@@ -3,7 +3,7 @@ import apiInstance from "./apiService";
 const login = async (data) => {
     try {
         // data => {username, password}
-        const response = await apiInstance.post('/login', data)
+        const response = await apiInstance.post('/auth/login', data)
         return response.data
     } catch (error) {
         console.log(error)
@@ -14,7 +14,7 @@ const login = async (data) => {
 const register = async (data) => {
     try {
         // data => {username, password, security_question, answer}
-        const response = await apiInstance.post('/register', data)
+        const response = await apiInstance.post('/auth/register', data)
         return response.data
     } catch (error) {
         console.log(error)
@@ -24,7 +24,7 @@ const register = async (data) => {
 const forgot_password = async (data) => {
     try {
         // data => {username, password, security_question, answer} password refers to the new password
-        const response = await apiInstance.post('/forgot_password', data)
+        const response = await apiInstance.post('/auth/forgot_password', data)
         return response.data
     } catch (error) {
         console.log(error)
