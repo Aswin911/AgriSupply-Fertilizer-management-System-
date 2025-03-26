@@ -1,19 +1,34 @@
-const { verify } = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = require('../config/config')
 
-const validateToken = (req, res, next) => {
-  const accessToken = req.header("accessToken");
+function authMiddleware(req, res, next) {
+    const authHeader = req.headers['authorization']
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        try {
+            const token = authHeader.split(' ')[1];
+            const decoded = jwt.verify(token, JWT_SECRET);
 
-  if (!accessToken) return res.json({ error: "User not logged in!" });
+            req.user = { user_id: decoded.user_id, username: decoded.username, role: decoded.role };
 
-  try {
-    const validToken = verify(accessToken, "importantsecret");
-    req.user = validToken;
-    if (validToken) {
-      return next();
+            next();
+        } catch (error) {
+            res.status(401).send("Unauthorized access");
+        }
+    } else {
+        console.log(req.headers)
+        res.status(401).send("Authorization header missing or invalid");
     }
-  } catch (err) {
-    return res.json({ error: err });
-  }
-};
+}
 
-module.exports = { validateToken };
+function roleMiddleware(roles) {
+    return (req, res, next) => {
+        const user = req.user
+        if (roles.includes(user.role)) {
+            next()
+        } else {
+            res.status(403).json({ error: "Access Denied" })
+        }
+    }
+}
+
+module.exports = { authMiddleware, roleMiddleware }
