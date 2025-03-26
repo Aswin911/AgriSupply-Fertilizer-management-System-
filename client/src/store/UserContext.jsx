@@ -1,7 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
-const storage = new MMKV();
-
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
